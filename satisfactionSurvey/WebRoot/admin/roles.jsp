@@ -20,6 +20,9 @@
 				url:"/satisfactionSurvey/roles/find.do",
 				fitColumns:true,
 				singleSelect:true,
+				pagination:true,
+				pageList:[5,10,15,20],
+				pageSize:5,
 				columns:[[
 							//注意属性一一对应
 				          {field:'rid',title:'编号',width:100},

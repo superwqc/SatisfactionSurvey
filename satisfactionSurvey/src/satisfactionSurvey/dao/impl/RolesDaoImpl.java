@@ -2,6 +2,7 @@ package satisfactionSurvey.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,19 @@ public class RolesDaoImpl implements IRolesDao{
 	public void update(Roles r) {
 		getSession().update(r);
 		
+	}
+	//查分页数据
+	public List<Roles> find(int startLine, int size) {
+		Query q=getSession().createQuery("FROM Roles");
+		q.setFirstResult(startLine);
+		q.setMaxResults(size);//第几行开始往下选几行
+		return q.list();
+	}
+
+	public int getRowCount() {
+		//一行一列调用
+		long l=(Long)getSession().createQuery("SELECT COUNT(*) FROM Roles").uniqueResult();
+		return (int)l;
 	}
 
 

@@ -2,6 +2,7 @@ package satisfactionSurvey.service;
 
 import java.util.List;
 
+import satisfactionSurvey.domain.Page;
 import satisfactionSurvey.domain.Roles;
 
 public interface IRolesService {
@@ -10,5 +11,7 @@ public interface IRolesService {
 	public void update(Roles r);
 	public Roles find(Integer rid);
 	public List<Roles> find();
+	
+	public Page findPageData(int p,int size);
 
 }

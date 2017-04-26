@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import satisfactionSurvey.dao.IRolesDao;
+import satisfactionSurvey.domain.Page;
 import satisfactionSurvey.domain.Roles;
 import satisfactionSurvey.service.IRolesService;
 
@@ -35,6 +36,16 @@ public class RolesServiceImpl implements IRolesService{
 
 	public void update(Roles r) {
 		dao.update(r);
+	}
+
+	public Page findPageData(int p, int size) {
+		int rowCount= dao.getRowCount();//×ÜÐÐÊý
+		
+		Page page=new Page(p,rowCount,size);
+		
+		List<Roles> list=dao.find(page.getStartLine(),page.getSize());
+		page.setList(list);
+		return page;
 	}
 
 }
