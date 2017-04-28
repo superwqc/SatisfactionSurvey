@@ -1,4 +1,4 @@
-# SatisfactionSurvey  用户满意度调查系统
+# SatisfactionSurvey  满意度调查系统
 
 开发环境：SpringMVC+Spring+Hibernate+Mysql+Jquery+Ajax
 
