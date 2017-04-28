@@ -17,3 +17,8 @@
 - 使用spring的IOC容器管理bean，@Controller @Service @Repository@component@Autowired.
 
 - 前台使用div+css布局，并使用bootstrap进行优化。后台界面使用easyui制作，使用了ajax+json。   
+
+
+
+
+至今，SatisfactionSurvey已被多家辅导教育机构接纳，用于教学测评、师资评价等
