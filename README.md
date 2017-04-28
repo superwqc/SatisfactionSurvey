@@ -1,4 +1,4 @@
-# SatisfactionSurvey  满意度调查系统
+# SatisfactionSurvey  满意度调查管理
 
 开发环境：SpringMVC+Spring+Hibernate+Mysql+Jquery+Ajax
 
@@ -6,7 +6,7 @@
 
 ### 系统介绍
 
-- 此项目分为前台和后台管理。使用springmvc作为web层框架。
+- 此项目分为前台和后台管理，前后端使用Ajax异步交互。使用springmvc作为web层框架。
   
 - 分为3层架构： web层、业务层、dao层。上层对下层的调用使用的是接口，从而实现了层与层之间的完全解耦功能。
 
