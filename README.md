@@ -13,3 +13,5 @@
 - 使用Page对象封装了一个分页页面上的所有数据。dao层加两个方法：获取总行数，获取分页数据。
 
 - 为了解决中文乱码问题，创建一个CharacterEncodingFilter，所有表单的提交方式都是post。
+
+- 前台使用div+css布局，并使用bootstrap进行优化。后台界面使用easyui制作，使用了ajax+json。
