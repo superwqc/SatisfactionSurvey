@@ -21,4 +21,4 @@
 
 
 
-至今，SatisfactionSurvey已被多家辅导教育机构接纳，用于教学测评、师资评价等
+至今，SatisfactionSurvey已被多家辅导教育机构接纳，用于教学测评、师资评价等。
