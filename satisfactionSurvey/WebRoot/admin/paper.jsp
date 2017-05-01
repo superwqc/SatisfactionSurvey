@@ -47,10 +47,6 @@
 		  		  	  	    	$("#ds").window("open");
 
 		  		  	  	    }
-
-
-
-
 		  		  	  	    },
 	  		  	  	    {
 			  		  	  	    text:"删除",
@@ -70,14 +66,9 @@
 						  		  	  	    success:function(){
 							  		  	  	    $("#tt").datagrid("reload");
 							  		  	  	    }
-
-
 						  		  	  	    });
-
 					  		  	  	    }
-			  		  	  	    
 			  		  	  	    	}
-
 			  		  	  	    },
 	  		  	  	    	{
 				  		  	  	    text:"修改",
@@ -89,20 +80,70 @@
 					  		  	  	    title:"修改",
 					  		  	  	    msg:"必须选择一行修改"
 					  		  	  	    });
-
 					  		  	 }
 				  		  	  	    else{
 				  		  	  	  	$("#du").window("open");
 	    	  	  	  	  	     	$("#du form").form("load",row);
 				  		  	  	    }
-
 			  		  	  	    }	
-				  		  	  	    
+
+				  			 },
+				  			 {
+					  			 text:"激活",
+					  			 iconCls:"icon-ok",
+					  			 handler:function(){
+					  				var row=$("#tt").datagrid("getSelected");
+				  		  	  	    if(row==null){
+				  		  	  	  	$.messager.show({
+					  		  	  	    title:"激活",
+					  		  	  	    msg:"必须选择一行激活"
+					  		  	  	    });
+					  			 	}
+				  		  	  	    else{
+					  		  	  	    $.ajax({
+						  		  	  	    type:"post",
+						  		  	  	    url:"/satisfactionSurvey/paper/active.do",
+						  		  	  	    data:{pid:row.pid},
+						  		  	  	    success:function(){
+							  		  	  	    $("#tt").datagrid("reload");
+							  		  	  	    }
 
 
-				  	 }
+						  		  	  	    
+						  		  	  	    });
+					  		  	  	    }
+				  			 }
+
+					  			 },
+				  			 {
+					  				text:"冻结",
+						  			 iconCls:"icon-no",
+						  			 handler:function(){
+					  				var row=$("#tt").datagrid("getSelected");
+				  		  	  	    if(row==null){
+				  		  	  	  	$.messager.show({
+					  		  	  	    title:"冻结",
+					  		  	  	    msg:"必须选择一行冻结"
+					  		  	  	    });
+					  			 	}
+				  		  	  	    else{
+					  		  	  	    $.ajax({
+						  		  	  	    type:"post",
+						  		  	  	    url:"/satisfactionSurvey/paper/frozen.do",
+						  		  	  	    data:{pid:row.pid},
+						  		  	  	    success:function(){
+							  		  	  	    $("#tt").datagrid("reload");
+							  		  	  	    }
 
 
+						  		  	  	    
+						  		  	  	    });
+					  		  	  	    }
+
+					  				 
+						  			 
+						  			 }
+						  	}
 		  	]
 	  	  	    
 
@@ -136,9 +177,7 @@
 					$("#tt").datagrid("reload");
 					}
 
-
 				});
-
 
 			});
 		$("#btnu").click(function(){
@@ -151,10 +190,7 @@
 					$("#du form").form("reset");
 					$("#tt").datagrid("reload");
 					}
-
-
 				});
-
 
 			});
 
@@ -171,12 +207,8 @@
 			valueField:"uid"
 			});
 		
-		
-
 	});
 
-
-  
   </script>
   
   
@@ -204,13 +236,6 @@
 			</div>
 		</form>
 	</div>
-  
-  
-  
-  
-  
-  
-  
   </body>
 </html>
   
