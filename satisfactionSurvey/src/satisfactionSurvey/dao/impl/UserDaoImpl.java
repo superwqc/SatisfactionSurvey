@@ -57,5 +57,12 @@ public class UserDaoImpl implements IUserDao{
 		return (int) l;
 	}
 
+	public User find(String account, String password) {
+		Query q=getSession().createQuery("FROM User WHERE account =? and password=?");
+		q.setParameter(0,account);
+		q.setParameter(1, password);
+		return (User) q.uniqueResult();
+	}
+
 
 }

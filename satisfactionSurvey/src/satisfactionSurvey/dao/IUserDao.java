@@ -15,6 +15,6 @@ public interface IUserDao {
 	public int getRowCount();
 	public List<User> find(int startLine,int size);
 	
-	
+	public User find(String account,String password);
 
 }
