@@ -19,7 +19,7 @@ public class UserServiceImpl implements IUserService{
 	@Autowired
 	private IUserDao dao;
 
-	public void delte(Integer uid) {
+	public void delete(Integer uid) {
 		dao.delte(uid);
 	}
 
@@ -48,6 +48,10 @@ public class UserServiceImpl implements IUserService{
 		
 		
 		return pp;
+	}
+
+	public User findByAccountAndPassword(String account, String password) {
+		return dao.find(account, password);
 	}
 
 
