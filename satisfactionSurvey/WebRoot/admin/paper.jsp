@@ -31,7 +31,7 @@
 	  	  	  	  			return a==0?'冻结':'激活';
 	  	  	  	  		}
 	  	  	  	  	},
-	  	  			{
+	  	  	  		{
 	  	  	  			field:'user',title:'用户',width:100,
 	  	  	  			formatter:function(a){
 	  	  	  				return a.realname;
@@ -143,7 +143,69 @@
 					  				 
 						  			 
 						  			 }
-						  	}
+						  	},
+
+						  	{
+							  	text:"分配问题",
+							  	handler:function(){
+							  	
+
+							  	var row=$("#tt").datagrid("getSelected");
+			  		  	  	    if(row==null){
+			  		  	  	  	$.messager.show({
+				  		  	  	    title:"分配问题",
+				  		  	  	    msg:"必须选择一行分配"
+				  		  	  	    });
+				  			 	}
+			  		  	  	    else{
+			  		  	  	 	 $("#da").window("open");
+			  		  	  	 	 $("#da #a").html("");//清空覆盖
+			  		  	  		 $("#da #a").append("问卷标题&nbsp;:&nbsp;");
+			  		  	  	 	$("#da #a").append(row.title);
+			  		  	  		$("#da #a").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+			  		  	  		 $("#da #a").append("调查对象&nbsp;:&nbsp;");
+			  		  	  		 $("#da #a").append(row.user.realname);
+			  		  	  	    
+				
+		
+
+				  		  	  		//准备所有问题
+			  		  	  	$.ajax({
+								type:"post",
+								url:"/satisfactionSurvey/paper/addQuestionToPaperUI.do",
+								data:{pid:row.pid},
+								//接受服务器发挥的数据
+								dataType:"json",
+								success:function(json) {
+
+									$("#a,#b,#c").html("");
+									
+									// 给第一部分填内容
+									$("#a").html(json.part1);
+									// 给第二部分填内容
+									for(var i = 0; i < json.part2.length; i++) {
+										var checkbox = $("<input type='checkbox' name='qid' value='"+json.part2[i].qid+"' />");
+										$("#da #b").append(checkbox);
+										$("#da #b").append(json.part2[i].content);
+									}
+									// 给第三部分填内容
+									for(var i = 0; i < json.part3.length; i++) {
+										var checkbox = $("<input type='checkbox' name='qid' value='"+json.part3[i].qid+"' />");
+										$("#da #c").append(checkbox);
+										$("#da #c").append(json.part3[i].content);
+								}
+								}
+							});
+				  		  	  	    
+
+
+				  		  	  		
+				  		  	  	    }
+
+
+							  	}
+
+							  	}
 		  	]
 	  	  	    
 
@@ -161,6 +223,14 @@
 			title:"修改问卷",
 			width:300,
 			height:200,
+			modal:true,
+			closed:true
+
+		});
+		$("#da").window({
+			title:"分配问题",
+			width:400,
+			height:300,
 			modal:true,
 			closed:true
 
@@ -235,6 +305,15 @@
 				<button id="btnu" type="button">确认修改</button>
 			</div>
 		</form>
+	</div>
+	<div id="da" title="修改问卷">
+			<div id="a" style="margin-top: 8px"></div>
+			<hr>
+			<div id="b"  style="margin-top: 30px"></div>
+			<hr>
+			<div id="c"  style="margin-top: 30px"></div>
+	
+		
 	</div>
   </body>
 </html>
