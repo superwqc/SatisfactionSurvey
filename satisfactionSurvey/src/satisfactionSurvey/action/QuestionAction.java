@@ -22,27 +22,24 @@ public class QuestionAction {
 	@RequestMapping("/find")
 	public void find(int page,int rows,HttpServletResponse response) throws Exception{
 		Page pp=service.getDatePage(page,rows);
-		
-		
 		JsonConfig jc=new JsonConfig();
-		jc.setExcludes(new String[]{"papers","scores","questions"});
-		
+		jc.setExcludes(new String[]{"papers","scores","questions","users"});
 		String json=JSONArray.fromObject(pp.getList(),jc).toString();
 		json="{\"total\":"+pp.getRowCount()+",\"rows\":"+json+"}";
 		
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().write(json);
 	}
+	
 	@RequestMapping("/save")
 	public void save(Question q,HttpServletResponse response) throws Exception{
-		
 		service.save(q);
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().write("{}");
 	}
+	
 	@RequestMapping("/update")
 	public void update(Question q,HttpServletResponse response) throws Exception{
-		
 		service.update(q);
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().write("{}");
