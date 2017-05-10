@@ -117,11 +117,12 @@ public class PaperAction {
 	}
 	
 	@RequestMapping("/showOnePaperUI")
-	public String showOnePaperUI(int pid, int[] qid, HttpServletRequest request) throws Exception {
+	public String  showOnePaperUI(int pid, int[] qid, HttpServletRequest request) throws Exception {
+		
 		Paper p=service.find(pid);
 		request.setAttribute("p", p);
-		
-		return "showOnePaper";
+		//×ª·¢
+		return "/front/showOnePaper";
 	
 	
 	}

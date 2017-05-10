@@ -88,18 +88,38 @@ public class UserAction {
 		if(u==null){
 			path="redirect:/front/index.jsp";
 		}else{
-			session.setAttribute("user",u);
-			List<Paper> list=pservice.find();
-			List list2=new ArrayList();
-			for (int i = 0; i < list.size(); i++) {
-				Paper p=list.get(i);
-				if(p.getStatus()==1){
-					list2.add(p);
-				}
-			}
-			request.setAttribute("list", list2);
 			
-			path="front/showActivePaper";
+			//登录成功后，存入Session
+			session.setAttribute("user",u);
+			
+			//登录的是学生
+			if(u.getRoles().getRname().equals("professor")){
+				List<Paper> list=pservice.find();
+				List list2=new ArrayList();
+				for (int i = 0; i < list.size(); i++) {
+					Paper p=list.get(i);
+					if(p.getStatus()==1){
+						list2.add(p);
+					}
+				}
+				request.setAttribute("list", list2);
+				
+				path="front/showActivePaper";
+				
+			}
+			//登录的是被评价的人，查看评价个人问卷
+			else{
+				//用户的相关问卷
+				List list=new ArrayList(u.getPapers());
+				request.setAttribute("list",list);
+				path="front/showUserPaper";
+				
+				
+			}
+			
+			
+			
+			
 		}
 		return path;
 	}
