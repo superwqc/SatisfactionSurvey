@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Home page</title>
+    <title>查看问卷</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -14,7 +14,7 @@
 			<c:redirect url="/front/index.jsp"></c:redirect>
 		</c:if>
 		<c:if test="${user != null}">
-			欢迎  ${user.roles.rname}  ${user.realname} 登录
+			欢迎 [  ${user.roles.rname}  ${user.realname}  ]登录
 		</c:if>
 		<h2>问卷列表</h2>
 		
@@ -33,7 +33,7 @@
 					<td>${p.pubdate}</td>
 					<td>${p.user.realname}</td>
 					<td>
-						<a href="/satisfactionSurvey/paper/showOnePaperUI.do?pid=${p.pid} }">我要打分</a>
+						<a href="/satisfactionSurvey/paper/showOnePaperUI.do?pid=${p.pid}">我要打分</a>
 					</td>
 				</tr>
 			</c:forEach>
